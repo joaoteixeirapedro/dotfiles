@@ -1,0 +1,17 @@
+# ~/.bashrc
+# Personal Bash configuration
+
+# Aliases
+alias dc='cd'
+alias ll='ls -alh'
+alias la='ls -A'
+alias gs='git status'
+
+# Custom prompt
+PS1='\u@\h:\w\$ '
+
+# Enable color support for ls if available
+if command -v dircolors >/dev/null 2>&1; then
+    eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+fi
