@@ -1,0 +1,8 @@
+# Local and sensitive files
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.swp
+*~
