@@ -10,8 +10,14 @@ backup_file() {
     local target="$1"
 
     if [ -e "$target" ] && [ ! -L "$target" ]; then
-        mv "$target" "$target.backup"
-        echo "Backed up $target to $target.backup"
+        local backup="$target.backup"
+        local number=1
+        while [ -e "$backup" ] || [ -L "$backup" ]; do
+            backup="$target.backup.$number"
+            number=$((number + 1))
+        done
+        mv "$target" "$backup"
+        echo "Backed up $target to $backup"
     fi
 }
 
