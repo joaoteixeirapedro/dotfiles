@@ -2,7 +2,7 @@
 
 set -e
 
-DOTFILES="$HOME/.dotfiles"
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "Installing dotfiles from $DOTFILES"
 
