@@ -6,9 +6,9 @@ This repository lets me keep my terminal configuration under version control and
 
 ## Included configuration
 
-- `bashrc` — Bash aliases and prompt customization
-- `tmux.conf` — tmux keybindings and quality-of-life settings
-- `install.sh` — creates symbolic links from this repository to the expected files in `$HOME`
+- `dotfiles/bashrc` — Bash aliases and prompt customization
+- `dotfiles/tmux.conf` — tmux keybindings and quality-of-life settings
+- `dotfiles/install.sh` — creates symbolic links from this repository to the expected files in `$HOME`
 
 ## Bash aliases
 
@@ -46,26 +46,29 @@ Then run:
 
 ```bash
 cd ~/.dotfiles
-chmod +x install.sh
-./install.sh
+chmod +x dotfiles/install.sh
+./dotfiles/install.sh
 source ~/.bashrc
 ```
 
-The installer backs up existing regular `.bashrc` and `.tmux.conf` files before creating symbolic links.
+The installer backs up existing regular `.bashrc` and `.tmux.conf` files before creating symbolic links. If a `.backup` file already exists, it uses a numbered backup name instead of replacing it.
 
 ## Repository structure
 
 ```text
 .dotfiles/
-├── bashrc
-├── tmux.conf
-├── install.sh
+├── dotfiles/
+│   ├── bashrc
+│   ├── tmux.conf
+│   └── install.sh
+├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
 ## Testing
 
-The installation can be tested on a fresh Linux virtual machine or a clean WSL distribution by cloning the repository and running `install.sh`.
+The installation can be tested on a fresh Linux virtual machine or a clean WSL distribution by cloning the repository and running `./dotfiles/install.sh`.
 
 ## Notes
 
@@ -79,3 +82,19 @@ Keeping configuration files in Git makes terminal setup:
 - portable
 - version controlled
 - easy to restore on a new machine
+
+## Example terminal output
+
+After running the installer on a clean test account, the script prints messages in this format:
+
+```text
+Installing dotfiles from /home/user/.dotfiles/dotfiles
+Dotfiles installed successfully.
+Run: source ~/.bashrc
+```
+
+Run `readlink ~/.bashrc` and `readlink ~/.tmux.conf` to inspect the created links. This example uses a placeholder home directory; your path will differ.
+
+## License and local files
+
+The source is available under the [MIT license](LICENSE). The [`.gitignore`](.gitignore) excludes local environment files, editor backups and common key files.
